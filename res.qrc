@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/BGScene/map_export_1591492565493.jpeg</file>
+        <file>res/BGScene/map_export_1591456798931.jpeg</file>
+        <file>res/BackgroundMusic/IMG_2213.mp3</file>
+        <file>res/BGScene/map_export_1591535411087.jpeg</file>
+        <file>res/BackgroundMusic/BGM1.wav</file>
+        <file>res/BackgroundMusic/BGM11.wav</file>
+    </qresource>
+</RCC>
