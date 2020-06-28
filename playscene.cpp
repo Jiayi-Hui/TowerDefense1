@@ -73,8 +73,8 @@ PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
                //怪物移动
                for (auto Moni = EnemyVec.begin(); Moni != EnemyVec.end(); Moni++)
 {
-                   if((*Moni)->GetId()!=4)
-                        leftEnemy++;
+//                   if((*Moni)->GetId()!=4)
+//                        leftEnemy++;
                    if((*Moni)->Move()) //怪物走到终点
                    {
                        delete *Moni;
@@ -114,13 +114,13 @@ PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
                                              {
                                                  can[j]->shoot((*Moni)->GetX(), (*Moni)->GetY());
                                                  qDebug() << "Attack1！";
-                                                 (*Moni)->health -= 3;
+                                                 (*Moni)->health -= 2;
                                                  if((*Moni)->health <= 0)
                                                  {
                                                      this->diamond += (*Moni)->orihealth;
                                                      (*Moni)->isAlive = false;
-                                                      leftEnemy--;
-                                                      if(counter==45&&leftEnemy==0)
+                                                      dead++;
+                                                      if(counter==46&&leftEnemy==0)
                                                       {
                                                           QSound* Win=new QSound("qrc:/res/Sound/Win.wav");
                                                            Win->play();
@@ -145,7 +145,7 @@ PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
                                                          if(magic[j]->judgeRect.intersects((*Moni)->m_Rect) && (*Moni)->isAlive&&(*Moni)->GetId()!=4)
                                                              {
                                                                 magic[j]->shoot((*Moni)->GetX(), (*Moni)->GetY());
-                                                                 (*Moni)->health -= 4;
+                                                                 (*Moni)->health -= 3;
                                                                  qDebug() << "Attack2!";
 
                                                                 if((*Moni)->health <3)
@@ -155,8 +155,8 @@ PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
                                                                 delete *Moni;
                                                                 EnemyVec.erase(Moni);
                                                                 Death->play();
-                                                                 leftEnemy--;
-                                                                 if(counter==45&&leftEnemy==0)
+                                                                 dead++;
+                                                                 if(counter==46&&leftEnemy==0)
                                                                  {
                                                                      QSound* Win=new QSound("qrc:/res/Sound/Win.wav");
                                                                       Win->play();
@@ -175,27 +175,38 @@ PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
                                  }
                             dialabel->setText(QString("%1").arg(diamond));
                      });
-
+           if(dead==leftEnemy&&dead!=0)
+           {
+               QSound* Win=new QSound("qrc:/res/Sound/Win.wav");
+                Win->play();
+                QMessageBox message(QMessageBox::NoIcon, "Win", "Congratulations！");
+                     message.setIconPixmap(QPixmap(":/res/Button/Victory.png"));
+                     message.exec();
+           }
 }
 //产生怪物
 void PlayScene::ProdEnemy(CoorStr** Waypointarr, int PathLength)
 {
      if(counter >= 0 && counter <= 5)
-     EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,1));
+     {EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,1));
+            leftEnemy++;}
      else  if( counter <= 12)
      {EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,4));
       leftwave=3;
       wavlabel->setText(QString("%1/4").arg(leftwave));}
      else  if( counter <= 16)
-         EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,2));
+     {EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,2));
+     leftEnemy++;}
      else  if( counter <= 20)
      {EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,4));
       leftwave=2;
       wavlabel->setText(QString("%1/4").arg(leftwave));}
      else  if( counter <= 26)
-         EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,2));
+        { EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,2));
+     leftEnemy++;}
      else  if( counter <= 30)
-         EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,1));
+        { EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,1));
+     leftEnemy++;}
      else  if( counter <= 40)
      {EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,4));
       leftwave=1;
@@ -203,7 +214,8 @@ void PlayScene::ProdEnemy(CoorStr** Waypointarr, int PathLength)
      else  if( counter <= 45)
      {EnemyVec.push_back(new Enemy(Waypointarr,PathLength,Waypointarr[0]->x,Waypointarr[0]->y,2));
       leftwave=0;
-      wavlabel->setText(QString("%1/4").arg(leftwave));}
+      wavlabel->setText(QString("%1/4").arg(leftwave));
+     leftEnemy++;}
     counter++;
      update();
 }
@@ -334,49 +346,6 @@ void PlayScene::paintEvent(QPaintEvent *)
 
     }
 }
-
-//void PlayScene::setEndScene()
-//{
-////            QLabel *winLabel = new QLabel;
-//            temPix1.load(":/res/Button/Victory.png");
-//            winLabel->setGeometry(0, 0, temPix1.width(), temPix1.height());
-//            winLabel->setPixmap(temPix1);
-//            winLabel->setParent(this);
-//            winLabel->move((this->width() - temPix1.width()) * 0.5,-temPix1.height());
-////            QLabel *loseLabel = new QLabel;
-//            temPix2.load(":/res/Button/GameOver.png");
-//            winLabel->setGeometry(0, 0, temPix2.width(), temPix2.height());
-//            winLabel->setPixmap(temPix2);
-//            winLabel->setParent(this);
-//            winLabel->move((this->width() - temPix2.width()) * 0.5, -temPix2.height());
-//}
-//void PlayScene::showEndScene()
-//{
-
-//    if(health>0&&leftEnemy==0)
-//    {
-
-//        QSound* Win=new QSound("qrc:/res/Sound/Win.wav");
-//        Win->play();
-//        QPropertyAnimation *animation = new QPropertyAnimation(winLabel, "geometry");
-//        animation->setDuration(1000);
-//        animation->setStartValue(QRect(winLabel->x(), winLabel->y(), winLabel->width(), winLabel->height()));
-//        animation->setEndValue(QRect(winLabel->x(), winLabel->y() + winLabel->height() * 2, winLabel->width(), winLabel->height()));
-//        animation->setEasingCurve(QEasingCurve::OutBounce);
-//        animation->start();
-//    }
-//    if(health==0)
-//    {
-//        QSound* Lose=new QSound("qrc:/res/Sound/Lose2.wav");
-//        Lose->play();
-//        QPropertyAnimation *animation = new QPropertyAnimation(loseLabel, "geometry");
-//        animation->setDuration(1000);
-//        animation->setStartValue(QRect(loseLabel->x(), loseLabel->y(), loseLabel->width(), loseLabel->height()));
-//        animation->setEndValue(QRect(loseLabel->x(),loseLabel->y() + loseLabel->height() * 2, loseLabel->width(), loseLabel->height()));
-//        animation->setEasingCurve(QEasingCurve::OutBounce);
-//        animation->start();
-//    }
-//}
 
 
 

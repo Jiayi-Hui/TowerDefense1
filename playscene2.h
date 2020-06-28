@@ -30,8 +30,6 @@ public:
      void setButtons();
      void setLabels();
      void BuildTower();
-     void setEndScene();
-     void showEndScene();
      void setWave();
 
 signals:

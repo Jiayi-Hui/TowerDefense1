@@ -73,14 +73,14 @@ playscene2::playscene2(QWidget *parent) : QMainWindow(parent)
                       else if((*Moni)->GetId()==3)
                            health-=6;
                       else health-=0;
-                      if(health==0)
+                      if(health<=2&&health>=0)
                       {
                           BGM->stop();
                           QSound* Lose=new QSound("qrc:/res/Sound/Lose2.wav");
                         Lose->play();
                           QMessageBox message(QMessageBox::NoIcon, "Lose", "Game over！");
-                               message.setIconPixmap(QPixmap(":/res/Button/GameOver.png"));
-                               message.exec();
+                          message.setIconPixmap(QPixmap(":/res/Button/GameOver.png"));
+                          message.exec();
                       }
                       hthlabel->setText(QString("%1").arg(health));
                       break;
@@ -106,6 +106,17 @@ playscene2::playscene2(QWidget *parent) : QMainWindow(parent)
                                                  {
                                                      this->diamond += (*Moni)->orihealth;
                                                      (*Moni)->isAlive = false;
+                                                     leftEnemy--;
+                                                     delete *Moni;
+                                                     EnemyVec.erase(Moni);
+                                                     if(counter==74&&leftEnemy==0)
+                                                     {
+                                                         QSound* Win=new QSound("qrc:/res/Sound/Win.wav");
+                                                          Win->play();
+                                                          QMessageBox message(QMessageBox::NoIcon, "Win", "Congratulations！");
+                                                               message.setIconPixmap(QPixmap(":/res/Button/Victory.png"));
+                                                               message.exec();
+                                                     }
                                                  }can[j]->temInterval = 0;
                                                  break;
 
@@ -123,7 +134,7 @@ playscene2::playscene2(QWidget *parent) : QMainWindow(parent)
                                                          if(magic[j]->judgeRect.intersects((*Moni)->m_Rect) && (*Moni)->isAlive&&(*Moni)->GetId()!=4)
                                                              {
                                                                 magic[j]->shoot((*Moni)->GetX(), (*Moni)->GetY());
-                                                                 (*Moni)->health -= 5;
+                                                                 (*Moni)->health -= 4;
                                                                  qDebug() << "Attack2!";
 
                                                                 if((*Moni)->health <= 0)
@@ -132,7 +143,15 @@ playscene2::playscene2(QWidget *parent) : QMainWindow(parent)
                                                                 (*Moni)->isAlive = false;
                                                                 delete *Moni;
                                                                 EnemyVec.erase(Moni);
-
+                                                                leftEnemy--;
+                                                                if(counter==74&&leftEnemy==0)
+                                                                {
+                                                                    QSound* Win=new QSound("qrc:/res/Sound/Win.wav");
+                                                                     Win->play();
+                                                                     QMessageBox message(QMessageBox::NoIcon, "Win", "Congratulations！");
+                                                                          message.setIconPixmap(QPixmap(":/res/Button/Victory.png"));
+                                                                          message.exec();
+                                                                }
                                                                 qDebug() << "Deleted";
                                                          }
                                                             break;
@@ -234,22 +253,6 @@ void playscene2::setLabels(){
     wavlabel->move(80,this->height()-90);
     wavlabel->setFont(QFont("Arial Unicode MS", 24));             //设置金钱标签属性
     wavlabel->setText(QString("%1/6").arg(leftwave));
-}
-//设置结束场景
-void playscene2::setEndScene()
-{
-            QLabel *winLabel = new QLabel;
-            temPix1.load(":/res/Button/Victory.png");
-            winLabel->setGeometry(0, 0, temPix1.width(), temPix1.height());
-            winLabel->setPixmap(temPix1);
-            winLabel->setParent(this);
-            winLabel->move((this->width() - temPix1.width()) * 0.5,-temPix1.height());
-            QLabel *loseLabel = new QLabel;
-            temPix2.load(":/res/Button/GameOver.png");
-            winLabel->setGeometry(0, 0, temPix2.width(), temPix2.height());
-            winLabel->setPixmap(temPix2);
-            winLabel->setParent(this);
-            winLabel->move((this->width() - temPix2.width()) * 0.5, -temPix2.height());
 }
 //塔的建造并升级
 void playscene2::BuildTower(){
