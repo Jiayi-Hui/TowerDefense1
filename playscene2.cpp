@@ -297,16 +297,7 @@ void playscene2::paintEvent(QPaintEvent *)
     painter.drawPixmap(moni->GetX(), moni->GetY(), moni->GetWidth(), moni->GetHeight(), QPixmap(moni->GetImgPath()));
     for(int i = 0; i < Level2TowerNumber; i ++)
     {
-            for(int i = 0; i < Level2TowerNumber; i ++)
-            {
-                painter.drawRect(can[i]->judgeRect);
-                painter.drawRect(magic[i]->judgeRect);
-            }
 
-            for (auto Moni = EnemyVec.begin(); Moni != EnemyVec.end(); Moni++)
-            {
-                painter.drawRect((*Moni)->m_Rect);
-            }
         if(can[i]->onAttackStatus)
         {
             can[i]->paintBullet(painter,can[i]->_level);
