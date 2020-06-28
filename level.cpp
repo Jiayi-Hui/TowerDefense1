@@ -23,6 +23,10 @@ Level::Level(QWidget *parent) : QMainWindow(parent)
                 MyPushButton *BackBtn = new MyPushButton(":/res/Button/Back.png");
                 BackBtn->setParent(this);
                 BackBtn->move(0.9*(this->width()-BackBtn->width()), 50);
+
+                    MyPushButton *ChsBtn = new MyPushButton(":/res/Button/Select.png");
+                    ChsBtn->setParent(this);
+                    ChsBtn->move(0.37*this->width(), 50);
               //点击返回
                 connect(BackBtn, &MyPushButton::clicked,[=](){
                     qDebug() << "BackBtn clicked";
@@ -47,6 +51,8 @@ Level::Level(QWidget *parent) : QMainWindow(parent)
                     S1 =new PlayScene;
                     S2 =new playscene2;
 
+
+
                     //监听level1的返回按钮
                             connect(S1, &PlayScene::S1Back, [=](){
                                 this->setGeometry(S1->geometry());
@@ -54,12 +60,6 @@ Level::Level(QWidget *parent) : QMainWindow(parent)
                                 this->show();
                             });
 
-                            //监听level2的返回按钮
-                            connect(S2, &playscene2::S2Back, [=](){
-                                this->setGeometry(S2->geometry());
-                                S2->hide();
-                                this->show();
-                            });
 
                             connect(level1Btn, &MyPushButton::clicked, [=](){
                                 level1Btn->BounceDown();
@@ -70,7 +70,12 @@ Level::Level(QWidget *parent) : QMainWindow(parent)
                                     S1->show();
                                 });
                             });
-
+                            //监听level2的返回按钮
+                            connect(S2, &playscene2::S2Back, [=](){
+                                this->setGeometry(S2->geometry());
+                                S2->hide();
+                                this->show();
+                            });
                             connect(level2Btn, &MyPushButton::clicked, [=](){
                                 level2Btn->BounceDown();
                                 level2Btn->BounceUp();
@@ -80,6 +85,9 @@ Level::Level(QWidget *parent) : QMainWindow(parent)
                                    S2->show();
                                 });
                             });
+
+
+
 
 }
 

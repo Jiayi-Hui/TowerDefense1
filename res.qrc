@@ -1,34 +1,51 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/BackgroundMusic/IMG_2213.mp3</file>
-        <file>res/BackgroundMusic/BGM1.wav</file>
-        <file>res/BackgroundMusic/BGM11.wav</file>
         <file>res/Scene/Choice.png</file>
-        <file>res/Tower/tw33.png</file>
-        <file>res/Tower/tw32.png</file>
+        <file>res/Scene/Mscene.bmp</file>
+        <file>res/Button/Victory.png</file>
+        <file>res/Button/stt2.png</file>
+        <file>res/Button/stt1.png</file>
+        <file>res/Button/stt.png</file>
+        <file>res/Button/Select.png</file>
+        <file>res/Button/Start.png</file>
+        <file>res/Button/Hth.png</file>
+        <file>res/Button/Coin1.png</file>
+        <file>res/Button/Build1.png</file>
+        <file>res/Button/Back.png</file>
+        <file>res/Button/4.png</file>
+        <file>res/Button/3.png</file>
+        <file>res/Button/2.png</file>
+        <file>res/BGScene/S04.jpg</file>
+        <file>res/BGScene/S03.jpg</file>
+        <file>res/Bullet/bl1.png</file>
+        <file>res/Bullet/bl21.png</file>
+        <file>res/Blood/radius_front.png</file>
+        <file>res/Blood/radius_back.png</file>
+        <file>res/BackgroundMusic/Win.mp3</file>
+        <file>res/BackgroundMusic/Lastwav2.wav</file>
+        <file>res/BackgroundMusic/Lastwav1.wav</file>
+        <file>res/BackgroundMusic/BGM11.wav</file>
+        <file>res/BackgroundMusic/BGM02.wav</file>
+        <file>res/BackgroundMusic/BGM01.wav</file>
+        <file>res/Tower/tw22.png</file>
+        <file>res/Tower/tw21.png</file>
         <file>res/Tower/tw12.png</file>
         <file>res/Tower/tw11.png</file>
         <file>res/Tower/f4f27b1fd2b54349b6a61b9e47ec0a3e.png</file>
-        <file>res/BGScene/IMG_2494.PNG</file>
-        <file>res/BGScene/IMG_2493.PNG</file>
-        <file>res/Button/Select.png</file>
-        <file>res/Button/Victory.png</file>
-        <file>res/Button/Back.png</file>
-        <file>res/Button/2.png</file>
-        <file>res/Button/3.png</file>
-        <file>res/Button/4.png</file>
-        <file>res/Scene/Mscene.bmp</file>
-        <file>res/BGScene/S002.bmp</file>
-        <file>res/BGScene/S001.bmp</file>
-        <file>res/BGScene/S003.bmp</file>
-        <file>res/Button/Start.png</file>
-        <file>res/BGScene/S01.jpg</file>
-        <file>res/BGScene/S02.jpg</file>
-        <file>res/BGScene/S03.jpg</file>
-        <file>res/BGScene/S04.jpg</file>
-        <file>res/Button/Hth.png</file>
-        <file>res/Button/Dia.png</file>
-        <file>res/Button/Coin1.png</file>
-        <file>res/Button/Coin2.png</file>
+        <file>res/Select/Box.jpeg</file>
+        <file>res/Monster/Pig/1_1_n_d.png</file>
+        <file>res/Monster/Dragon/1_3_e_m.png</file>
+        <file>res/Monster/Bird/5_1_n_b.png</file>
+        <file>res/Monster/radius_back.png</file>
+        <file>res/Monster/radius_front.png</file>
+        <file>res/Sound/Win.wav</file>
+        <file>res/Sound/Warn.wav</file>
+        <file>res/Sound/Lose2.wav</file>
+        <file>res/Sound/Dragon.wav</file>
+        <file>res/Sound/Bird.wav</file>
+        <file>res/Sound/Bat.wav</file>
+        <file>res/Button/GameOver.png</file>
+        <file>res/Scene/MainScene.JPG</file>
+        <file>res/Button/Start2.png</file>
     </qresource>
 </RCC>

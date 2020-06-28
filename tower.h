@@ -1,13 +1,28 @@
 #ifndef TOWER_H
 #define TOWER_H
 
-#include <QObject>
+#include <QPixmap>
+#include <QPainter>
+#include <QRect>
 
-class Tower : public QObject
+class Tower
 {
-    Q_OBJECT
 public:
-    explicit Tower(QObject *parent = nullptr);
+
+    int getX() { return locY; }
+    int getY() { return locX; }
+    virtual int updateTower(int level)=0;
+    int attackRange;
+    int attackSpeed;
+    int buildCost;
+    bool built = false;
+    bool onAttackStatus = false;
+    int locX, locY;
+    QPixmap bullet;
+    QRect judgeRect;
+
+private:
+     QPixmap towerImg;
 
 signals:
 

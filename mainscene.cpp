@@ -8,17 +8,16 @@ Mainscene::Mainscene(QWidget *parent)
 {
     ui->setupUi(this);
     //配置主场景
-    setFixedSize(900,700);
+    setFixedSize(1000,700);
     setWindowTitle("StartScene");
-    setWindowIcon(QIcon(":/res/Tower/f4f27b1fd2b54349b6a61b9e47ec0a3e.png"));
     connect(ui->actionquit,&QAction::triggered,[=](){
         this->close();
     });
 
     //开始按钮
-    MyPushButton *startbtn=new MyPushButton(":/res/Button/Start.png");
+    MyPushButton *startbtn=new MyPushButton(":/res/Button/Start2.png");
     startbtn->setParent(this);
-    startbtn->move(this->width()*0.5-startbtn->width()*0.5,this->height()*0.15);
+    startbtn->move(this->width()*0.5-startbtn->width()*0.5,this->height()*0.2);
 
     //选择关卡
     choice = new Level;
@@ -42,19 +41,13 @@ Mainscene::Mainscene(QWidget *parent)
 
             });
     });
-
-
 }
 void Mainscene::paintEvent(QPaintEvent *){
     QPainter painter(this);
     QPixmap pix;
-    pix.load(":/res/Scene/Mscene.bmp");
+    pix.load(":/res/Scene/MainScene.JPG");
     painter.drawPixmap(0,0,this->width(),this->height(),pix);
-
-
 }
-//
-
 Mainscene::~Mainscene()
 {
     delete ui;

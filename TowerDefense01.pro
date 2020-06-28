@@ -16,21 +16,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    buildbutton.cpp \
+    buildtowerbtn.cpp \
+    cannon.cpp \
+    enemy.cpp \
     level.cpp \
+    magictower.cpp \
     main.cpp \
     mainscene.cpp \
     mypushbutton.cpp \
     playscene.cpp \
     playscene2.cpp \
-    tower.cpp
+    tower.cpp \
 
 HEADERS += \
+    buildbutton.h \
+    buildtowerbtn.h \
+    cannon.h \
+    config.h \
+    enemy.h \
     level.h \
+    magictower.h \
     mainscene.h \
     mypushbutton.h \
     playscene.h \
     playscene2.h \
-    tower.h
+    tower.h \
 
 FORMS += \
     mainscene.ui
@@ -41,6 +52,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    res.qrc \
     res.qrc
 
 DISTFILES += \
